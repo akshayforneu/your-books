@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Search from './components/Search/Search'
+import {AppContainer} from './styles'
+import Gallery from './components/Gallery/Gallery'
+import BookInfo from "./components/Details/Details"
+import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+     <AppContainer>
+        <Switch>
+          <Route path='/' exact render={()=><Redirect to="/search"/>}/>
+          <Route path="/search" exact component={Search} />
+          <Route path="/bookinfo/:id" component={BookInfo} />
+        </Switch>
+       
+        {/* <Gallery></Gallery> */}
+       
+      </AppContainer>
+    </BrowserRouter>
+     
+  )
 }
 
 export default App;
